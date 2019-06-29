@@ -55,7 +55,24 @@ public class Program_50 {//pow（n,x） -100<n<100 x属于integer
 /*
 Runtime: 1 ms, faster than 36.43% of Java online submissions for Pow(x, n).
 Memory Usage: 33.8 MB, less than 18.35% of Java online submissions for Pow(x, n).
-大胜利 完全凭借自己做的
+大胜利 完全凭借自己做的  今天gitgub 上不去了 难道是运营商限制了我的访问 真是nm的日乐购
+
+C:\Users\pc20188>ping www.github.com -t
+正在 Ping github.com [13.229.188.59] 具有 32 字节的数据:
+请求超时。
+请求超时。
+请求超时。
+请求超时。
+请求超时。
+请求超时。  坚持一个多月的 profile 马赛克就这么被硬生生的给断了
+请求超时。
+请求超时。
+请求超时。
+ping www.leetcode.com -t
+来自 2606:4700:30::6812:231c 的回复: 时间=134ms
+请求超时。
+
+请求超时。
  */
 
             return result;
