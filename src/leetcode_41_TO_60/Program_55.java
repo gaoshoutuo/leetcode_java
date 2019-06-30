@@ -8,7 +8,7 @@ public class Program_55 {//Jump Game  给出数组 是否能够跳到最后 imde
     public static void main(String[] args) {
         Solution solution = new Solution();
 
-        System.out.println(solution.canJump(new int[]{3,8,2,0,0,1,5}));
+        System.out.println(solution.canJump(new int[]{3,1,1,1,4}));
     }
 
     static class Solution {//估计也要用backyrace
@@ -20,22 +20,22 @@ public class Program_55 {//Jump Game  给出数组 是否能够跳到最后 imde
         }
 
         private void xx(int[] nums,int p,int j,int l){
-            if (nums[p]>l){
+
+            if (nums[p]>l&&bbl[p]==false){//前进
                 if (p+nums[p]>=nums.length-1){
                     bb=1; return;
                 }
                 bbl[p]=true;
                 xx(nums, p+nums[p],nums[p],0);
-                System.out.println(p+""+nums[p]);
             }
-            if (nums[p]<=l){
-              /*  if (bbl[p]==true){
-                    return;
-                }*/
+            if (nums[p]<=l||bbl[p]==true){//后腿
+
                 if (j>0){//后退
+                    //System.out.println(p+""+nums[p]);
                     bbl[p]=true;
                     if (p<1)return;
-                    xx(nums, --p,--j,l++);
+                    --p;--j;
+                    xx(nums, p,j,++l);
                 }
                 //p--;if (p<0)return;
             }
