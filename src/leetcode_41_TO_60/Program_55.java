@@ -14,9 +14,17 @@ public class Program_55 {//Jump Game  给出数组 是否能够跳到最后 imde
     static class Solution {//估计也要用backyrace
         int bb=0;boolean []bbl;
         public boolean canJump(int[] nums) {//思路 就是跳入pi 确认pi>j 则跳入 p[i+j]  return 总之是递归 有难度
+            if (nums.length==0)return false;
+            if (nums.length==1)return true;
             bbl=new boolean[nums.length];
             xx(nums,0,nums[0],0);
             return bb>0?true:false;
+            /*
+            Runtime: 2 ms, faster than 42.46% of Java online submissions for Jump Game.
+Memory Usage: 42.1 MB, less than 20.29% of Java online submissions for Jump Game.
+牙痛做到大半夜 坚持终于做出来了 还是在逻辑上要注意  还是要一块一块的定义好 清晰的了解这一切
+今天有点累 加上牙痛 很奇怪 以后的健身项目可能得放到晚上了，而且睡眠时间得一定满足
+             */
         }
 
         private void xx(int[] nums,int p,int j,int l){
