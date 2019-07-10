@@ -8,6 +8,13 @@ public class Program_61 {//    Output: 4->5->1->2->3->NULL  旋转队列 Input: 
      *     ListNode next;
      *     ListNode(int x) { val = x; }
      * }
+     *
+     * Input: 1->2->3->4->5->NULL, k = 2
+     * Output: 4->5->1->2->3->NULL
+     * Explanation:
+     * rotate 1 steps to the right: 5->1->2->3->4->NULL
+     * rotate 2 steps to the right: 4->5->1->2->3->NULL
+     * 看招聘学语言 还是说我真正懂得学技术
      */
 
      static class ListNode {
