@@ -9,7 +9,7 @@ public class Program_60 {//顺序排列序列 Permutation SequenceInput: n = 3, 
         Solution solution=new Solution();
         long l=System.currentTimeMillis();
         //System.out.println(solution.getPermutation(9,24479));
-        System.out.println(solution.getPermutation3(4,3));
+        System.out.println(solution.getPermutation4(5,1));
         System.out.println(System.currentTimeMillis()-l);
     }
 
@@ -110,7 +110,7 @@ public class Program_60 {//顺序排列序列 Permutation SequenceInput: n = 3, 
             return p;
         }
 
-        public String getPermutation3(int n, int k) {
+        public String getPermutation3(int n, int k) {//这一段 应该是我抄的不是我自己写的
             LinkedList<Integer> notUsed = new LinkedList<Integer>();
 
             int weight = 1;
@@ -133,6 +133,35 @@ public class Program_60 {//顺序排列序列 Permutation SequenceInput: n = 3, 
             }
 
             return res;
+        }
+
+        public String getPermutation4(int n, int k) {
+            StringBuilder sb=new StringBuilder();
+            LinkedList<Integer>linkedList=new LinkedList<Integer>();
+            for (int i=0;i<n;i++){
+                linkedList.add(i+1);
+            }
+            int mat[]=new int[n];
+            mat[0]=1;
+            for (int i=1;i<n;i++){
+                mat[i]=(i+1)*mat[i-1];
+            }
+            k=k-1;
+            for (int i=0;i<n-1;i++){
+                int q=k/mat[n-i-1-1];
+                sb.append(linkedList.get(q));
+                linkedList.remove(q);
+                k=k%mat[n-i-1-1];
+            }
+            sb.append(linkedList.get(0));
+
+            //return mat[0]+""+mat[1]+""+mat[2]+""+mat[3];
+            return sb.toString();//a month ago 不要在荒废了
+            /**
+             * Runtime: 1 ms, faster than 99.28% of Java online submissions for Permutation Sequence.
+             * Memory Usage: 34.3 MB, less than 100.00% of Java online submissions for Permutation Sequence.
+             * 舒服了
+             */
         }
     }
     //超出时间限制
