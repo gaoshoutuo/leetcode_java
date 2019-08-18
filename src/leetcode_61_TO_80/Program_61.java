@@ -114,6 +114,9 @@ public class Program_61 {//    Output: 4->5->1->2->3->NULL  旋转队列 Input: 
      * Runtime: 1 ms, faster than 27.73% of Java online submissions for Rotate List.
      * Memory Usage: 36 MB, less than 100.00% of Java online submissions for Rotate List.
      * 我这不是在刷题啊 我这是在杀题目啊
+     *
+     * 独立思考虽然慢 但是成果是颇多的 就像遇到难题思考好几天解决出来 比看答案找思路来的慢 但是如果坚持做下去
+     * 会越来越来的 来自奥数大神的见解
      */
 
 
