@@ -16,7 +16,7 @@ Given word = "ABCB", return false.
     public static void main(String []args){
         Solution solution=new Solution();
         long l1=System.currentTimeMillis();
-        boolean b=solution.exist(new char[][]{
+        boolean b=solution.existMy(new char[][]{
                 {'a','a','a','a','a','a','a','a','a','a','a','a','a','a','a','a','a','a','a','a','a','a','a','a','a','a','a','a','a','a'},
                 {'a','a','a','a','a','a','a','a','a','a','a','a','a','a','a','a','a','a','a','a','a','a','a','a','a','a','a','a','a','a'},
                 {'a','a','a','a','a','a','a','a','a','a','a','a','a','a','a','a','a','a','a','a','a','a','a','a','a','a','a','a','a','a'},
@@ -50,6 +50,18 @@ Given word = "ABCB", return false.
         },"baaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
         System.out.println(b);
         System.out.println(System.currentTimeMillis()-l1);
+
+        boolean c=solution.existMy(new char[][]{{'A','B','C','E'},
+                {'S','F','E','S'},
+                {'A','D','E','E'},
+        },"ABCB");
+        System.out.println(c);
+
+        boolean d=solution.existMy(new char[][]{{'A','A','A','A'},
+                {'A','A','A','A'},
+                {'A','A','A','A'},
+        },"AAAAAAAAAAAAA");
+        System.out.println(d);
     }
 
     static class Solution {//{'A','B','C','E'}, {'S','F','C','S'}, {'A','D','E','E'}  感觉应该越是回溯解决
@@ -82,48 +94,40 @@ Given word = "ABCB", return false.
         }
     }*/
         boolean abc=false;
-      /*  public boolean exist(char[][] board, String word) {
+        public boolean existMy(char[][] board, String word) {
             //boolean isTrue[][]=new boolean[board.length][board[0].length];
             char[]kk=word.toCharArray();
             for (int i=0;i<board.length;i++){
                 for(int j=0;j<board[0].length;j++){
-                    backTrace(board,kk,i,j,0,new boolean[board.length][board[0].length]);
-                    if (abc==true)return abc;
+                    abc=backTrace(board,kk,i,j,0,new boolean[board.length][board[0].length]);
+                    if (abc==true)return true;
                 }
             }
-
             return abc;
-        }*/
+        }
 
-        void backTrace(char[][] board, char[]word,int i,int j,int k,boolean isTrue[][]){
-            if (i<0 || j<0 || i == board.length || j == board[0].length) return;
-            if (isTrue[i][j]==true){
-                return;
+        boolean backTrace(char[][] board, char[]word,int i,int j,int k,boolean bb[][]){
+            if (i<0 || j<0 || i == board.length || j == board[0].length) return false;
+            if (board[i][j]!=word[k]||bb[i][j]==true){
+                //bb[i][j]=false;  这才是我自己的解决方案 日了狗啊
+                return false;
             }
-            if (board[i][j]==word[k]){
-                //System.out.println(i+"--"+j);
-                isTrue[i][j]=true;
+            bb[i][j]=true;
+                System.out.println(board[i][j]+"----"+i+"----"+j+"----"+k);
                 if (k==word.length-1){
                     abc=true;
-                    return;
+                    return true;
                 }
-                //isTrue[i+1][j]=true;
-                backTrace(board,word,i,j+1,k+1,isTrue);
-                //isTrue[i][j+1]=false;
-                //isTrue[i-1][j]=true;
-                backTrace(board,word,i+1,j,k+1,isTrue);
-                //isTrue[i+1][j]=false;
-                //isTrue[i][j+1]=true;
-                backTrace(board,word,i-1,j,k+1,isTrue);
-                //isTrue[i-1][j]=false;
-                //isTrue[i][j-1]=true;
-                backTrace(board,word,i,j-1,k+1,isTrue);
-                //isTrue[i][j-1]=false;
-
-                isTrue[i][j]=false;
-            }else {
-                return;
-            }
+                //board[i][j]^=256;
+                boolean exists=backTrace(board,word,i+1,j,k+1,bb)||
+                        backTrace(board,word,i-1,j,k+1,bb)||
+                        backTrace(board,word,i,j+1,k+1,bb)||
+                        backTrace(board,word,i,j-1,k+1,bb);
+                //board[i][j]^=256;
+            if (exists==false)
+            bb[i][j]=false;
+               return exists;
+            //估计是我爸题意理解错误了  With extra space it will become too slow, say you create one additional 2D visited array now you will also have to initialize again and again.
         }
 
 
@@ -141,12 +145,12 @@ Given word = "ABCB", return false.
             if (i == word.length) return true;
             if (y<0 || x<0 || y == board.length || x == board[y].length) return false;
             if (board[y][x] != word[i]) return false;//反向 省无限资源
-            //board[y][x] ^= 256;
+            board[y][x] ^= 256;
             boolean exist = exist(board, y, x+1, word, i+1)
                     || exist(board, y, x-1, word, i+1)
                     || exist(board, y+1, x, word, i+1)
                     || exist(board, y-1, x, word, i+1);
-            //board[y][x] ^= 256;
+            board[y][x] ^= 256;
             return exist;
         }
 
