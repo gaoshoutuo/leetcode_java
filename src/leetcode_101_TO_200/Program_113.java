@@ -1,6 +1,8 @@
 package leetcode_101_TO_200;
 
-public class Program_104 {//easy 二叉树的最大深度
+import java.util.List;
+
+public class Program_113 {//medium 输出所有为target的路径
 
       public class TreeNode {
           int val;
@@ -10,8 +12,8 @@ public class Program_104 {//easy 二叉树的最大深度
       }
 
     class Solution {
-        public int maxDepth(TreeNode root) {
-            return 0;
+        public List<List<Integer>> pathSum(TreeNode root, int sum) {
+            return null;
         }
     }
 }

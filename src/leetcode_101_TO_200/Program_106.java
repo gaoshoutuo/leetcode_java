@@ -1,6 +1,6 @@
 package leetcode_101_TO_200;
 
-public class Program_104 {//easy 二叉树的最大深度
+public class Program_106 {//medium 中序后续还原二叉树
 
       public class TreeNode {
           int val;
@@ -10,8 +10,8 @@ public class Program_104 {//easy 二叉树的最大深度
       }
 
     class Solution {
-        public int maxDepth(TreeNode root) {
-            return 0;
+        public TreeNode buildTree(int[] inorder, int[] postorder) {
+            return null;
         }
     }
 }

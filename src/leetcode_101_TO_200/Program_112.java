@@ -1,7 +1,6 @@
 package leetcode_101_TO_200;
 
-public class Program_104 {//easy 二叉树的最大深度
-
+public class Program_112 {//easy 二叉树路径总和是否为target 必须到叶子节点的路径
       public class TreeNode {
           int val;
           TreeNode left;
@@ -10,8 +9,8 @@ public class Program_104 {//easy 二叉树的最大深度
       }
 
     class Solution {
-        public int maxDepth(TreeNode root) {
-            return 0;
+        public boolean hasPathSum(TreeNode root, int sum) {
+            return false;
         }
     }
 }

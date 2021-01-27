@@ -1,6 +1,6 @@
 package leetcode_101_TO_200;
 
-public class Program_104 {//easy 二叉树的最大深度
+public class Program_111 {//easy 二叉树的最小深度
 
       public class TreeNode {
           int val;
@@ -10,7 +10,7 @@ public class Program_104 {//easy 二叉树的最大深度
       }
 
     class Solution {
-        public int maxDepth(TreeNode root) {
+        public int minDepth(TreeNode root) {
             return 0;
         }
     }
